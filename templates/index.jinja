@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet" type="text/css">
+    <link href="/static/css/style.css" rel="stylesheet" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script>
+				// show ten stocks from redis db
+				function showtopten() 
+						{
+								var xmlhttp = new XMLHttpRequest();
+								xmlhttp.onreadystatechange = function() {
+								    if (this.readyState == 4 && this.status == 200) {
+								        document.getElementById("main_display").innerHTML = this.responseText;
+								    }
+								};
+								xmlhttp.open("GET", "http://127.0.0.1:8080/top_ten", true);
+								xmlhttp.send();
+						}
+				//shows searched result from redis
+				function SearchResult() {
+
+						var str = document.getElementById("search_text").value;	
+						if(str=='')
+						{
+								showtopten()
+ 						}
+						else			
+						{
+								var xmlhttp = new XMLHttpRequest();
+								xmlhttp.onreadystatechange = function() {
+								    if (this.readyState == 4 && this.status == 200) {
+								        document.getElementById("main_display").innerHTML = this.responseText;
+								    }
+								};
+								xmlhttp.open("GET", "http://127.0.0.1:8080/generate?search="+str, true);
+								xmlhttp.send();
+						}
+				}
+$(window).ready(function()
+{
+	      $('.container') .css({'margin-top': (($('#navbar_header').height()) + 28 )+'px'});
+				showtopten() 
+});
+// resizes height of body according to navbar responsive design
+$(window).resize(function()
+{
+        $('.container') .css({'margin-top': (($('#navbar_header').height()) + 28 )+'px'});
+});
+		</script>
+  </head>
+  <body>
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar_header">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><b>Bhav</b>Search</a>
+    </div>
+    <div class="navbar-form navbar-right" >
+      <div class="input-group">
+        <input type="text" class="form-control" id='search_text' placeholder="Search Stocks" onkeyup="SearchResult()">
+        <div class="input-group-btn">
+          <button class="btn btn-default" onclick="SearchResult()">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<br/>
+<div class='container'>
+			<div id="main_display">
+			</div>
+</div>
+<div class="footer">
+	<center>
+		<h2 style="color:rgba(37, 99, 140, 0.94);">About</h2>
+		BhavSearch is a webtool to see search about various stocks equities. 
+		BhavCopy source: <a href="http://www.bseindia.com/markets/equity/EQReports/BhavCopyDebt.aspx">BSE</a>
+		<br/>
+		<b>Github Repo</b>: <a href="http://www.github.com/shamantyagi/">BhavSearch</a> |	
+		<b>Author</b>: <a href="http://shamantyagi.github.io"> @radeonguy </a>
+	</center>
+</div>
+
+<br/><br/><br/>
+  </body>
+</html>
+
+
+

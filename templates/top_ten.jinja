@@ -1,0 +1,44 @@
+			<h2>Featured Stocks</h2>
+				<table class='table table-hover'>
+					<thead>
+					<tr>
+						<th> CODE </th>
+						<th> NAME </th>
+						<th> OPEN </th>
+						<th> HIGH </th>
+						<th> LOW </th>
+						<th> CLOSE </th>
+					</tr>
+					</thead>
+					<tbody>
+					{% for stock in entries[:10]: %}
+					<tr>
+						<td> {{ stock[1][0] }} </td>
+						{% set growth_color = 'black' %}
+						{% set growth_symbol = 'glyphicon-menu-down' %}
+
+						{% if (stock[1][4] > stock[1][1] ): %}
+							{% set growth_color = 'green' %}
+							{% set growth_symbol = 'glyphicon-menu-up' %}
+						{% elif (stock[1][4] < stock[1][1]):  %}
+							{% set growth_color = 'red' %}
+							{% set growth_symbol = 'glyphicon-menu-down' %}
+						{% else:  %}
+							{% set growth_color = 'black' %}
+							{% set growth_symbol = 'glyphicon-minus' %}
+						{% endif %}
+
+						<td>
+							<span style="color:{{ growth_color }};"> <i class="glyphicon {{ growth_symbol }}"></i></span>						
+								 {{ stock[0] }}
+						</td>
+						<td> {{ stock[1][1] }} </td>
+						<td> {{ stock[1][2] }} </td>
+						<td> {{ stock[1][3] }} </td>
+						<td> {{ stock[1][4] }} </td>
+
+					</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+

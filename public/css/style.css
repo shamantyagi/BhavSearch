@@ -1,0 +1,53 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: rgba(37, 99, 140, 0.94) !important;
+    z-index: 9999;
+		border-right:0px !important;
+		border-left:0px !important;
+    border-bottom: 1 solid gray !important;
+    letter-spacing: 1px;
+    border-radius: 0px;
+		font-family:Dosis;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #ffffff !important;
+		font-size:38px !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #ffffff !important;
+    background-color: rgba(37, 99, 140, 0.94) !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color:rgba(37, 99, 140, 0.94) transparent;
+    color: #ffffff !important;
+}
+
+.container
+{	
+	margin-top:51px ;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
